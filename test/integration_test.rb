@@ -1,4 +1,4 @@
-gem 'minitest', '~> 5.2'
+gem 'minitest', '~> 5.2'    # ~> Gem::LoadError: Could not find 'minitest' (~> 5.2) - did find: [minitest-4.7.5]
 require 'minitest/autorun'
 require 'minitest/pride'
 
@@ -7,7 +7,7 @@ require_relative '../lib/phone_book'
 class IntegrationTest < Minitest::Test
   def test_lookup_by_last_name
     phone_book = PhoneBook.new
-    entries = phone_book.lookup(Friedman).sort_by {|e| e.first_name}
+    entries = phone_book.lookup('Friedman').sort_by {|e| e.first_name}
 
     assert_equal 3, entries.length
     e1, e2, e3 = entries
@@ -33,7 +33,7 @@ class IntegrationTest < Minitest::Test
     assert_equal "48823", e2.zipcode
 
     assert_equal "Julie Friedman", e3.name
-    assert_equal "4231" e3.id
+    assert_equal "4231", e3.id
     assert_equal "2/1/2009", e3.reg_date
     assert_equal "yqttwendellwyatt@jumpstartlab.com", e3.email_address
     assert_equal "787-613-9000", e3.home_phone
@@ -41,4 +41,13 @@ class IntegrationTest < Minitest::Test
     assert_equal "San Juan", e3.city
     assert_equal "PR", e3.state
     assert_equal "00917", e3.zipcode
+  end
 end
+
+# ~> Gem::LoadError
+# ~> Could not find 'minitest' (~> 5.2) - did find: [minitest-4.7.5]
+# ~>
+# ~> /Users/cluhring/.rvm/rubies/ruby-2.1.3/lib/ruby/2.1.0/rubygems/dependency.rb:298:in `to_specs'
+# ~> /Users/cluhring/.rvm/rubies/ruby-2.1.3/lib/ruby/2.1.0/rubygems/dependency.rb:309:in `to_spec'
+# ~> /Users/cluhring/.rvm/rubies/ruby-2.1.3/lib/ruby/2.1.0/rubygems/core_ext/kernel_gem.rb:53:in `gem'
+# ~> /Users/cluhring/Desktop/Chris'_Code/event_reporter/test/integration_test.rb:1:in `<main>'
