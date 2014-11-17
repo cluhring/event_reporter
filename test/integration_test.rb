@@ -3,6 +3,7 @@ require 'minitest/autorun'
 require 'minitest/pride'
 
 require_relative '../lib/phone_book'
+require_relative '../event_attendees.csv'
 
 class IntegrationTest < Minitest::Test
   def test_lookup_by_last_name

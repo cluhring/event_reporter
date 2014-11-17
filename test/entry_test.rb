@@ -28,6 +28,6 @@ class EntryTest < Minitest::Test
     assert_equal '21 Jump Street', entry.street
     assert_equal 'New York City', entry.city
     assert_equal 'NY', entry.state
-    assert_equal '02627', entry.zipcode
+    assert_equal '02627', entry.zipcode #.clean_zipcode
   end
 end
