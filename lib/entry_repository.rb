@@ -18,9 +18,28 @@ class EntryRepository
     @entries = entries
   end
 
+  def find_by_id(x)
+    entries.select do |entry|
+      entry.id == x
+    end
+  end
+
+  def find_by_reg_date(x)
+    entries.select do |entry|
+      entry.reg_date == x
+    end
+  end
+
+  def find_by_first_name(x)
+    entries.select do |entry|
+      entry.first_name == x
+    end
+  end
+
   def find_by_last_name(name)
     entries.select do |entry|
       entry.last_name == name
     end
   end
+
 end

@@ -1,11 +1,11 @@
-gem 'minitest'              # => true
-require 'minitest/autorun'  # => true
-require 'minitest/pride'    # => true
+gem 'minitest'
+require 'minitest/autorun'
+require 'minitest/pride'
 
-require_relative '../lib/phone_book'  # => true
+require_relative '../lib/phone_book'
 #require_relative '../event_attendees.csv'  # ~> LoadError: cannot load such file -- /Users/cluhring/Desktop/Chris'_Code/event_reporter/event_attendees.csv
 
-class IntegrationTest < Minitest::Test  # ~> NameError: uninitialized constant MiniTest::Test
+class IntegrationTest < Minitest::Test
 
 
   def test_lookup_by_last_name
@@ -64,20 +64,22 @@ class IntegrationTest < Minitest::Test  # ~> NameError: uninitialized constant M
     assert_equal "11215", entry.zipcode
   end
 
+  def test_lookup_by_phone
+    phone_book = PhoneBook.new
+    entries = phone_book.lookup('530-919-3000')
+    assert_equal 1, entries.length
+    entry = entries.first
+    assert_equal "Audrey", entry.first_name
+    assert_equal "Hasegan", entry.last_name
+    assert_equal "Audrey Hasegan", entry.name
+    assert_equal "530-919-3000", entry.phone_number #"434-907-1000"
+    assert_equal "8", entry.id
+    assert_equal "11/12/08 17:18", entry.reg_date
+    assert_equal "ffbbieucf@jumpstartlab.com", entry.email_address
+    assert_equal "1570 Old Ranch Rd.", entry.street
+    assert_equal "Placerville", entry.city
+    assert_equal "CA", entry.state
+    assert_equal "95667", entry.zipcode
+    # 8,11/12/08 17:18,Audrey,Hasegan,ffbbieucf@jumpstartlab.com,530-919-3000,1570 Old Ranch Rd.,Placerville,CA,95667
+  end
 end
-
-# >> Run options: --seed 55580
-# >>
-# >> # Running tests:
-# >>
-# >>
-# >>
-# >> [31mF[0m[32ma[0m[33mb[0m[34mu[0m[35ml[0m[36mo[0m[31mu[0m[32ms[0m[33m [0m[34mt[0m[35me[0m[36ms[0m[31mt[0m[32ms[0m in 0.000389s, 0.0000 tests/s, 0.0000 assertions/s.
-# >>
-# >> 0 tests, 0 assertions, 0 failures, 0 errors, 0 skips
-
-# ~> NameError
-# ~> uninitialized constant MiniTest::Test
-# ~>
-# ~> /Users/cluhring/.rvm/rubies/ruby-2.1.3/lib/ruby/2.1.0/minitest/unit.rb:26:in `const_missing'
-# ~> /Users/cluhring/Desktop/Chris'_Code/event_reporter/test/integration_test.rb:8:in `<main>'
