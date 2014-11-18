@@ -1,7 +1,11 @@
 require_relative 'messages'
+require_relative 'cli'
+require_relative 'entry'
+require_relative 'entry_repository'
+#require_relative 'phone_book'
 require 'pry'
 #binding.pry
-#place below somewhere as needed
+
 
 class CLI
 
@@ -12,6 +16,7 @@ class CLI
     @messages = Messages.new
     @instream = instream
     @outstream = outstream
+    #@parser => do we need some kind of CSV parser right here?
   end
 
   def finished?
@@ -36,6 +41,7 @@ class CLI
   end
 
   def process_initial_commands
+    #outstream.puts.messages.strip.split(',')
     case
     when start?
       outstream.puts "You've started."
