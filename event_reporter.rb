@@ -1,4 +1,7 @@
 require 'cli'
+require 'pry'
+
+
 
 class EventReporter
   def initialize
