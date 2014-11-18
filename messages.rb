@@ -15,13 +15,14 @@ class Messages
     :help   #what else on this line?
   end
 
-  # def find
-  # end
+  def find
+
+  end
+
   def loads
     command == %w(loads)
     #outstream.puts "#{file} loaded."
     #what about help/help?||loads/loads?
-    #need to use question mark?
   end
 
   def queue_count

@@ -17,8 +17,7 @@ class CLI
     @instream = instream
     @outstream = outstream
     @queue     = []
-    @entries   = []
-    #@parser => do we need some kind of CSV parser right here?
+    @entries   = []   #this is what parses the CSV file
   end
 
   def finished?
@@ -162,4 +161,4 @@ end
 
 
 end
-git 
+git
