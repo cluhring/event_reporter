@@ -26,6 +26,9 @@ class Messages
 
   def queue_count
     command == %w(queue count)
+    #return 0
+    #return 63
+    #return "#{number}"
   end
 
   def queue_clear
@@ -40,6 +43,7 @@ class Messages
     if command.downcase == %w(help find)#.downcase (for extension)
     then puts "Select what to search by: id, reg_date, first_name, last_name, email_address,\n
      home_phone, street, city, state, or zipcode."
+     #need to find first_name John
   end
 
   def help_load
@@ -56,10 +60,12 @@ class Messages
 
   def help_queue_count
     command == %w(queue count)
+    #needs to explain how queue count works
   end
 
   def help_queue_print
     command == %w(queue print)
+    #needs to explain how printing function works
   end
 
   def help_save
