@@ -10,88 +10,88 @@ class PhoneBookTest < Minitest::Test
     repository = Minitest::Mock.new
     phone_book = PhoneBook.new(repository)
     repository.expect(:find_by_last_name, [], ["Ball"])
-    phone_book.lookup('Ball')
+    phone_book.lookup_by_last_name('Ball')
     repository.verify
   end
 
   def test_lookup_by_id
-    skip
+    #skip
     repository = Minitest::Mock.new
     phone_book = PhoneBook.new(repository)
     repository.expect(:find_by_id, [], ["3760"])
-    phone_book.lookup('3760')
+    phone_book.lookup_by_id('3760')
     repository.verify
   end
 
   def test_lookup_by_reg_date
-    skip
+    # skip
     repository = Minitest::Mock.new
     phone_book = PhoneBook.new(repository)
     repository.expect(:find_by_reg_date, [], ["2/1/09 2:36"])
-    phone_book.lookup('2/1/09 2:36')
+    phone_book.lookup_by_reg_date('2/1/09 2:36')
     repository.verify
   end
 
   def test_lookup_by_first_name
-    skip
+    # skip
     repository = Minitest::Mock.new
     phone_book = PhoneBook.new(repository)
     repository.expect(:find_by_first_name, [], ["Everett"])
-    phone_book.lookup('Everett')
+    phone_book.lookup_by_first_name('Everett')
     repository.verify
   end
 
   def test_lookup_by_email_address
-    skip
+    # skip
     repository = Minitest::Mock.new
     phone_book = PhoneBook.new(repository)
     repository.expect(:find_by_email_address, [], ["bqeager@jumpstartlab.com"])
-    phone_book.lookup('bqeager@jumpstartlab.com')
+    phone_book.lookup_by_email_address('bqeager@jumpstartlab.com')
     repository.verify
   end
 
   def test_lookup_by_home_phone
-    skip
+    #skip
     repository = Minitest::Mock.new
     phone_book = PhoneBook.new(repository)
     repository.expect(:find_by_home_phone, [], ["617-202-3000"])
-    phone_book.lookup('617-202-3000')
+    phone_book.lookup_by_home_phone('617-202-3000')
     repository.verify
   end
 
   def test_lookup_by_street
-    skip
+    # skip
     repository = Minitest::Mock.new
     phone_book = PhoneBook.new(repository)
     repository.expect(:find_by_street, [], ["45 Mt. Auburn Street"])
-    phone_book.lookup('45 Mt. Auburn Street')
+    phone_book.lookup_by_street('45 Mt. Auburn Street')
     repository.verify
   end
 
   def test_lookup_by_city
-    skip
+    # skip
     repository = Minitest::Mock.new
     phone_book = PhoneBook.new(repository)
     repository.expect(:find_by_city, [], ["Cambridge"])
-    phone_book.lookup('Cambridge')
+    phone_book.lookup_by_city('Cambridge')
     repository.verify
   end
 
   def test_lookup_by_state
-    skip
+    # skip
     repository = Minitest::Mock.new
     phone_book = PhoneBook.new(repository)
     repository.expect(:find_by_state, [], ["MA"])
-    phone_book.lookup('MA')
+    phone_book.lookup_by_state('MA')
     repository.verify
   end
 
   def test_lookup_by_zipcode
-    skip
+    # skip
     repository = Minitest::Mock.new
     phone_book = PhoneBook.new(repository)
     repository.expect(:find_by_zipcode, [], ["02138"])
-    phone_book.lookup('02138')
+    phone_book.lookup_by_zipcode('02138')
     repository.verify
   end
 
