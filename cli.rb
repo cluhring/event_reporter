@@ -1,4 +1,11 @@
 require_relative 'messages'
+require_relative 'cli'
+require_relative 'entry'
+require_relative 'entry_repository'
+#require_relative 'phone_book'
+require 'pry'
+#binding.pry
+
 
 class CLI
 
@@ -9,6 +16,7 @@ class CLI
     @messages = Messages.new
     @instream = instream
     @outstream = outstream
+    #@parser => do we need some kind of CSV parser right here?
   end
 
   def finished?
@@ -16,7 +24,7 @@ class CLI
   end
 
   def start?
-    #@start == "start"
+    @command == "start"
   end
 
   def instructions?
@@ -33,29 +41,57 @@ class CLI
   end
 
   def process_initial_commands
+    #outstream.puts.messages.strip.split(',')
     case
     when start?
-      outstream.puts " anything" #Got To This Point."
+      outstream.puts "You've started."
     when instructions?
-      outstream.puts messages.help  #don't forget to add help <command>
+      outstream.puts messages.help
     when finished?
       outstream.puts messages.ending
-    #when load?
+    when loads?
+      outstream.puts messages.loads
+        #an if/else statement here?
+    when queue_count
+      #messages.results.count
+      outstream.puts messages.queue_count
+    when queue clear
+      outstream.puts messages.queue_clear
+    when queue print
+      outstream.puts messages.queue_print
 
-    #when queue count
 
-    #when queue clear
+      when queue print by <attribute>
 
-    #when queue print
+      outstream.puts messages.queue_print...#what here?
 
-    #when queue print by <attribute>
+    when queue save to <filename.csv.
+      outstream.puts messages.queue_save_to # "#{filename}" ?
 
-  # when queue save to <filename.csv.
+    when find <attribute> <criteria>
 
-  #when find <attribute> <criteria>
+
 
     else
       outstream.puts messages.not_a_valid_command
     end
   end
-#end
+
+    case
+  #why have question marks in cli and not messages? help_find  vs. help_find?
+    when help_find?
+      outstream.puts messages.help_find
+    when help_load?
+      outstream.puts messages.help_load
+    when help_queue?
+      outstream.puts messages.help_queue
+    when help_queue_clear?
+      outstream.puts messages.help_queue_clear
+    when help_queue_count?
+      outstream.puts messages.help_queue_count
+    when help_queue_print?
+      outstream.puts messages.help_queue_print
+    when help_save#how to do this?
+      outstream.puts messages.help_save
+    end
+end
