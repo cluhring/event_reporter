@@ -39,42 +39,7 @@ class Messages
     command == %w(queue print)
   end
 
-  def help_find
-    if command.downcase == %w(help find)#.downcase (for extension)
-    then puts "Select what to search by: id, reg_date, first_name, last_name, email_address,\n
-     home_phone, street, city, state, or zipcode."
-     #need to find first_name John
-  end
 
-  def help_load
-    command == %w(help load)
-  end
-
-  def help_queue
-    command == %w(help queue)
-  end
-
-  def help_queue_clear
-    command == %w(queue clear)
-  end
-
-  def help_queue_count
-    command == %w(queue count)
-    #needs to explain how queue count works
-  end
-
-  def help_queue_print
-    command == %w(queue print)
-    #needs to explain how printing function works
-  end
-
-  def help_save
-    command == %w(help save to).csv   ||
-    command == %w(help save to).txt   ||
-    command == %w(help save to).json  ||
-    command == %w(help save to).xml   ||
-    command == %w(help save to).yml
-  end
 
   def command_request
     puts "What would you like to do?"
