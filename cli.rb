@@ -1,10 +1,9 @@
+#require SimpleCov
 require_relative 'messages'
 require_relative 'cli'
 require_relative 'entry'
 require_relative 'entry_repository'
-#require_relative 'phone_book'
-#require_relative ...
-#require_relative ...
+require_relative 'event_attendees-5.csv'
 require 'terminal-table'
 require 'pry'
 
