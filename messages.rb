@@ -1,79 +1,72 @@
 class Messages
-  def self.call
+  def response
     {
-      :intro => "Welcome to Event Reporter.",
-      :command_request => "What would you like to do?",
       :not_a_valid_command => "That's not a valid command. Try again or seek help.",
       :help => "Choose from among these help messages: find, load, queue,\n
-        queue clear, queue count, queue print."
+        queue clear, queue count, queue print.",
       :quit => "You have now quit.",
       :ending => "You have now closed Event Reporter."
     }
   end
 
-  def help
-    :help   #what else on this line?
+  def commands
+    {
+      'queue clear' => 'clears out queue',
+      'queue count' => 'gives number of items in queue',
+      'queue print' => 'shows items in queue',
+      'find' => 'finds item you searched and shows all information related to item',
+      'load <filename>' => 'loads file so you can access the data',
+      'queue' => 'does something with the queue'
+    }
   end
 
-  # def find
-  # end
+  def intro
+    "Welcome to Event Reporter."
+  end
+
+  def command_request
+    "What would you like to do?"
+  end
+
   def loads
-    command == %w(loads)
-    #outstream.puts "#{file} loaded."
-    #what about help/help?||loads/loads?
-    #need to use question mark?
+    "Loading your queue"
   end
 
-  def queue_count
-    command == %w(queue count)
-    #return 0
-    #return 63
-    #return "#{number}"
+  def queue_count(number_of_entries)
+    "There are #{number_of_entries} entries in the queue."
   end
 
-  def queue_clear
-    command == %w(queue clear)
-  end
-
-  def queue_print
-    command == %w(queue print)
-  end
-
-  def help_find
-    if command.downcase == %w(help find)#.downcase (for extension)
-    then puts "Select what to search by: id, reg_date, first_name, last_name, email_address,\n
-     home_phone, street, city, state, or zipcode."
-     #need to find first_name John
-  end
-
-  def help_load
-    command == %w(help load)
-  end
-
-  def help_queue
-    command == %w(help queue)
-  end
-
-  def help_queue_clear
-    command == %w(queue clear)
-  end
 
   def help_queue_count
-    command == %w(queue count)
-    #needs to explain how queue count works
+    commands["queue count"]
   end
 
   def help_queue_print
-    command == %w(queue print)
-    #needs to explain how printing function works
+    commands["queue print"]
   end
 
-  def help_save
-    command == %w(help save to).csv   ||
-    command == %w(help save to).txt   ||
-    command == %w(help save to).json  ||
-    command == %w(help save to).xml   ||
-    command == %w(help save to).yml
+  def help_find
+    commands["find"]
+  end
+
+  def help_load
+    commands["load <filename>"]
+  end
+
+  def help_queue_clear
+    commands["queue clear"]
+  end
+
+  def help_queue
+    commands["queue"]
+  end
+
+  def queue_clear
+    "the queue is now cleared"
+  end
+
+  def queue_print
+    command["queue print"]
   end
 
   def command_request
@@ -81,11 +74,10 @@ class Messages
   end
 
   def not_a_valid_command
-    puts "That's not a valid command. Try again or seek help."
+    puts "That's not a valid command. Try again."
   end
 
   def file_not_found
-    outstream.puts "Think, then type. Pick another file name."
+    puts "Pick another file name."
   end
-end
 end
