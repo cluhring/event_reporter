@@ -36,9 +36,45 @@ class EntryRepository
     end
   end
 
-  def find_by_last_name(name)
+  def find_by_last_name(x)
     entries.select do |entry|
-      entry.last_name == name
+      entry.last_name == x
+    end
+  end
+
+  def find_by_email_address(x)
+    entries.select do |entry|
+      entry.email_address == x
+    end
+  end
+
+  def find_by_home_phone(x)
+    entries.select do |entry|
+      entry.home_phone == x
+    end
+  end
+
+  def find_by_street(x)
+    entries.select do |entry|
+      entry.street == x
+    end
+  end
+
+  def find_by_city(x)
+    entries.select do |entry|
+      entry.city == x
+    end
+  end
+
+  def find_by_state(x)
+    entries.select do |entry|
+      entry.state == x
+    end
+  end
+
+  def find_by_zipcode(x)
+    entries.select do |entry|
+      entry.zipcode == x
     end
   end
 

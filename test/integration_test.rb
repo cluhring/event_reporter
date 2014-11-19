@@ -1,3 +1,5 @@
+require 'simplecov'
+SimpleCov.start
 gem 'minitest'
 require 'minitest/autorun'
 require 'minitest/pride'
@@ -7,10 +9,65 @@ require_relative '../lib/phone_book'
 
 class IntegrationTest < Minitest::Test
 
+  def test_lookup_by_id
+    phone_book = PhoneBook.new
+    entries = phone_book.lookup_by_id('3760')
+    assert_equal 1, entries.length
+    entry = entries.first
+    assert_equal "Mike", entry.first_name
+    assert_equal "Maloney", entry.last_name
+    assert_equal "Mike Maloney", entry.name
+    assert_equal "4349071000", entry.phone_number #"434-907-1000"
+    assert_equal "3760", entry.id
+    assert_equal "1/31/09 19:08", entry.reg_date
+    assert_equal "ahillemsen1@jumpstartlab.com", entry.email_address
+    assert_equal "459 7th Ave. Apt1", entry.street
+    assert_equal "Brooklyn", entry.city
+    assert_equal "NY", entry.state
+    assert_equal "11215", entry.zipcode
+  end
+
+  # def test_lookup_by_reg_date
+  #   phone_book = PhoneBook.new
+  #   entries = phone_book.lookup_by_reg_date('11/12/08 17:18')
+  #   assert_equal 1, entries.length
+  #   entry = entries.first
+  #   assert_equal "Audrey", entry.first_name
+  #   assert_equal "Hasegan", entry.last_name
+  #   assert_equal "Audrey Hasegan", entry.name
+  #   assert_equal "530-919-3000", entry.phone_number #"434-907-1000"
+  #   assert_equal "8", entry.id
+  #   assert_equal "11/12/08 17:18", entry.reg_date
+  #   assert_equal "ffbbieucf@jumpstartlab.com", entry.email_address
+  #   assert_equal "1570 Old Ranch Rd.", entry.street
+  #   assert_equal "Placerville", entry.city
+  #   assert_equal "CA", entry.state
+  #   assert_equal "95667", entry.zipcode
+  #   # 8,11/12/08 17:18,Audrey,Hasegan,ffbbieucf@jumpstartlab.com,530-919-3000,1570 Old Ranch Rd.,Placerville,CA,95667
+  # end
+
+  # def test_lookup_by_first_name
+  #   phone_book = PhoneBook.new
+  #   entries = phone_book.lookup_by_first_name('Audrey')
+  #   assert_equal 1, entries.length
+  #   entry = entries.first
+  #   assert_equal "Audrey", entry.first_name
+  #   assert_equal "Hasegan", entry.last_name
+  #   assert_equal "Audrey Hasegan", entry.name
+  #   assert_equal "530-919-3000", entry.phone_number #"434-907-1000"
+  #   assert_equal "8", entry.id
+  #   assert_equal "11/12/08 17:18", entry.reg_date
+  #   assert_equal "ffbbieucf@jumpstartlab.com", entry.email_address
+  #   assert_equal "1570 Old Ranch Rd.", entry.street
+  #   assert_equal "Placerville", entry.city
+  #   assert_equal "CA", entry.state
+  #   assert_equal "95667", entry.zipcode
+  #   # 8,11/12/08 17:18,Audrey,Hasegan,ffbbieucf@jumpstartlab.com,530-919-3000,1570 Old Ranch Rd.,Placerville,CA,95667
+  # end
 
   def test_lookup_by_last_name
     phone_book = PhoneBook.new
-    entries = phone_book.lookup('Friedman').sort_by {|e| e.first_name}
+    entries = phone_book.lookup_by_last_name('Friedman').sort_by {|e| e.first_name}
 
     assert_equal 3, entries.length
     e1, e2, e3 = entries
@@ -46,27 +103,9 @@ class IntegrationTest < Minitest::Test
     assert_equal "00917", e3.zipcode
   end
 
-  def test_lookup_by_id
+  def test_lookup_by_home_phone
     phone_book = PhoneBook.new
-    entries = phone_book.lookup('3760').sort_by {|e| e.first_name}
-    assert_equal 1, entries.length
-    entry = entries.first
-    assert_equal "Mike", entry.first_name
-    assert_equal "Maloney", entry.last_name
-    assert_equal "Mike Maloney", entry.name
-    assert_equal "4349071000", entry.phone_number #"434-907-1000"
-    assert_equal "3760", entry.id
-    assert_equal "1/31/09 19:08", entry.reg_date
-    assert_equal "ahillemsen1@jumpstartlab.com", entry.email_address
-    assert_equal "459 7th Ave. Apt1", entry.street
-    assert_equal "Brooklyn", entry.city
-    assert_equal "NY", entry.state
-    assert_equal "11215", entry.zipcode
-  end
-
-  def test_lookup_by_phone
-    phone_book = PhoneBook.new
-    entries = phone_book.lookup('530-919-3000')
+    entries = phone_book.lookup_by_home_phone('530-919-3000')
     assert_equal 1, entries.length
     entry = entries.first
     assert_equal "Audrey", entry.first_name
@@ -82,4 +121,80 @@ class IntegrationTest < Minitest::Test
     assert_equal "95667", entry.zipcode
     # 8,11/12/08 17:18,Audrey,Hasegan,ffbbieucf@jumpstartlab.com,530-919-3000,1570 Old Ranch Rd.,Placerville,CA,95667
   end
+
+  # def test_lookup_by_street
+  #   phone_book = PhoneBook.new
+  #   entries = phone_book.lookup_by_street('1570 Old Ranch Rd.')
+  #   assert_equal 1, entries.length
+  #   entry = entries.first
+  #   assert_equal "Audrey", entry.first_name
+  #   assert_equal "Hasegan", entry.last_name
+  #   assert_equal "Audrey Hasegan", entry.name
+  #   assert_equal "530-919-3000", entry.phone_number #"434-907-1000"
+  #   assert_equal "8", entry.id
+  #   assert_equal "11/12/08 17:18", entry.reg_date
+  #   assert_equal "ffbbieucf@jumpstartlab.com", entry.email_address
+  #   assert_equal "1570 Old Ranch Rd.", entry.street
+  #   assert_equal "Placerville", entry.city
+  #   assert_equal "CA", entry.state
+  #   assert_equal "95667", entry.zipcode
+  #   # 8,11/12/08 17:18,Audrey,Hasegan,ffbbieucf@jumpstartlab.com,530-919-3000,1570 Old Ranch Rd.,Placerville,CA,95667
+  # end
+
+  # def test_lookup_by_city
+  #   phone_book = PhoneBook.new
+  #   entries = phone_book.lookup_by_city('Placerville')
+  #   assert_equal 1, entries.length
+  #   entry = entries.first
+  #   assert_equal "Audrey", entry.first_name
+  #   assert_equal "Hasegan", entry.last_name
+  #   assert_equal "Audrey Hasegan", entry.name
+  #   assert_equal "530-919-3000", entry.phone_number #"434-907-1000"
+  #   assert_equal "8", entry.id
+  #   assert_equal "11/12/08 17:18", entry.reg_date
+  #   assert_equal "ffbbieucf@jumpstartlab.com", entry.email_address
+  #   assert_equal "1570 Old Ranch Rd.", entry.street
+  #   assert_equal "Placerville", entry.city
+  #   assert_equal "CA", entry.state
+  #   assert_equal "95667", entry.zipcode
+  #   # 8,11/12/08 17:18,Audrey,Hasegan,ffbbieucf@jumpstartlab.com,530-919-3000,1570 Old Ranch Rd.,Placerville,CA,95667
+  # end
+
+  # def test_lookup_by_state
+  #   phone_book = PhoneBook.new
+  #   entries = phone_book.lookup_by_state('CA')
+  #   assert_equal 1, entries.length
+  #   entry = entries.first
+  #   assert_equal "Audrey", entry.first_name
+  #   assert_equal "Hasegan", entry.last_name
+  #   assert_equal "Audrey Hasegan", entry.name
+  #   assert_equal "530-919-3000", entry.phone_number #"434-907-1000"
+  #   assert_equal "8", entry.id
+  #   assert_equal "11/12/08 17:18", entry.reg_date
+  #   assert_equal "ffbbieucf@jumpstartlab.com", entry.email_address
+  #   assert_equal "1570 Old Ranch Rd.", entry.street
+  #   assert_equal "Placerville", entry.city
+  #   assert_equal "CA", entry.state
+  #   assert_equal "95667", entry.zipcode
+  #   # 8,11/12/08 17:18,Audrey,Hasegan,ffbbieucf@jumpstartlab.com,530-919-3000,1570 Old Ranch Rd.,Placerville,CA,95667
+  # end
+
+  # def test_lookup_by_first_zipcode
+  #   phone_book = PhoneBook.new
+  #   entries = phone_book.lookup_by_zipcode('95667')
+  #   assert_equal 1, entries.length
+  #   entry = entries.first
+  #   assert_equal "Audrey", entry.first_name
+  #   assert_equal "Hasegan", entry.last_name
+  #   assert_equal "Audrey Hasegan", entry.name
+  #   assert_equal "530-919-3000", entry.phone_number #"434-907-1000"
+  #   assert_equal "8", entry.id
+  #   assert_equal "11/12/08 17:18", entry.reg_date
+  #   assert_equal "ffbbieucf@jumpstartlab.com", entry.email_address
+  #   assert_equal "1570 Old Ranch Rd.", entry.street
+  #   assert_equal "Placerville", entry.city
+  #   assert_equal "CA", entry.state
+  #   assert_equal "95667", entry.zipcode
+  #   # 8,11/12/08 17:18,Audrey,Hasegan,ffbbieucf@jumpstartlab.com,530-919-3000,1570 Old Ranch Rd.,Placerville,CA,95667
+  # end
 end
