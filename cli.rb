@@ -5,9 +5,8 @@ require_relative 'entry_repository'
 #require_relative 'phone_book'
 #require_relative ...
 #require_relative ...
+require 'terminal-table'
 require 'pry'
-#binding.pry
-
 
 class CLI
 
@@ -97,11 +96,12 @@ class CLI
     when queue_clear?
       clears_queue
       puts messages.queue_clear
-    when queue print?
-      puts messages.queue_print
+    when queue_print?
+      prints_queue
+      #puts messages.queue_print
 
-    when queue print by <attribute>
-       puts messages.queue_print
+    # when queue print by <attribute>
+    #    puts messages.queue_print
     #
     # when queue save to <filename.csv.
     #   outstream.puts messages.queue_save_to # "#{filename}" ?
