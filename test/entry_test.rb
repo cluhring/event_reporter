@@ -1,3 +1,5 @@
+require 'simplecov'
+SimpleCov.start
 gem 'minitest', '~> 5.2'    # ~> Gem::LoadError: Could not find 'minitest' (~> 5.2) - did find: [minitest-4.7.5]
 require 'minitest/autorun'
 require 'minitest/pride'

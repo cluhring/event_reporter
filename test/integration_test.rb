@@ -1,3 +1,5 @@
+require 'simplecov'
+SimpleCov.start
 gem 'minitest'
 require 'minitest/autorun'
 require 'minitest/pride'
@@ -9,7 +11,7 @@ class IntegrationTest < Minitest::Test
 
   def test_lookup_by_id
     phone_book = PhoneBook.new
-    entries = phone_book.lookup_by_id('3760').sort_by {|e| e.first_name}
+    entries = phone_book.lookup_by_id('3760')
     assert_equal 1, entries.length
     entry = entries.first
     assert_equal "Mike", entry.first_name
@@ -100,8 +102,6 @@ class IntegrationTest < Minitest::Test
     assert_equal "PR", e3.state
     assert_equal "00917", e3.zipcode
   end
-
-ffbbieucf@jumpstartlab.com
 
   def test_lookup_by_home_phone
     phone_book = PhoneBook.new

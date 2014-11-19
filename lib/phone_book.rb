@@ -2,7 +2,7 @@ require_relative 'entry_repository'
 
 class PhoneBook
   attr_reader :repository
-  def initialize(repository = EntryRepository.load_entries('./data'))
+  def initialize(repository = EntryRepository.load_entries('../data'))
     @repository = repository
   end
 
