@@ -18,7 +18,7 @@ class CLI
     @instream  = instream
     @outstream = outstream
     @queue     = []
-    @entries   = []   #this parses the CSV file
+    @entries   = []
   end
 
   def finished?
@@ -113,7 +113,7 @@ class CLI
   end
 
   def load_entries
-    filename = @command.split[1] || "./data/event_attendees.csv"
+    filename = @command.split[1] || "./data/event_attendees-5.csv"
 
     CSV.foreach("#{filename}", headers: true, header_converters: :symbol) do |row|
       @entries << Entry.new(row)

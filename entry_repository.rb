@@ -1,12 +1,11 @@
 require_relative 'entry'
 require 'csv'
-#require '../event_attendees.csv'
 
 class EntryRepository
   attr_reader :entries
 
   def self.load_entries(directory)
-    file = File.join(directory, 'event_attendees.csv')
+    file = File.join(directory, 'event_attendees-5.csv')
     data = CSV.open(file, headers: true, header_converters: :symbol)
     rows = data.map do |row|
       Entry.new(row)
